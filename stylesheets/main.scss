@@ -1,0 +1,31 @@
+.outer-container {
+  width: 600px;
+  height: 600px;
+  border: solid 1px black;
+  background-color: #e1e3e8;
+}
+
+.form-main {
+  padding: 20px;
+}
+
+.form-section {
+  border-bottom: solid 1px grey;
+}
+
+.form-input {
+  display: inline-block;
+  margin: 20px;
+}
+
+.alert {
+  border: solid 1px red;
+}
+
+#submit {
+  margin: 20px; 
+}
+
+h3 {
+  border: solid 1px red;
+}
