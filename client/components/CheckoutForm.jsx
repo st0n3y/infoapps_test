@@ -6,27 +6,29 @@ import SuccessMessage from './SuccessMessage.jsx'
 import classNames from 'classnames';
 
 export default class CheckoutForm extends Component {
-  
+
   constructor() {
     super();
     this.state = {
       okToSubmit: true,
-      data: [],
+      // data: [],
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.requestAddressFromAPI = this.requestAddressFromAPI.bind(this);
     this.getPostcode = this.getPostcode.bind(this);
+    this.requestAddressFromAPI = this.requestAddressFromAPI.bind(this);
   }
 
   getPostcode() {
     var postcode = document.getElementById("postcode").value;
-
-    if(postcode.length >= 8) {
-      var postcodeArray = postcode.split(" ");
-      var postcode1 = postcodeArray[0];
-      var postcode2 = postcodeArray[1];
-    }
-    this.requestAddressFromAPI(postcode1, postcode2);
+    
+    var postcodeArray = postcode.split(" ");
+    var postcode1 = postcodeArray[0];
+    var postcode2 = postcodeArray[1];
+    
+    this.requestAddressFromAPI(postcode1, postcode2)
+      .then((parsedData) => {
+        this.autofillFields(parsedData);
+      })
   }
 
   requestAddressFromAPI(postcode1, postcode2) {
@@ -35,17 +37,37 @@ export default class CheckoutForm extends Component {
     var request = new XMLHttpRequest();
     
     url = url + postcode1 + "+" + postcode2 + key;
-    console.log(url);
-    request.open("GET", url);
-    request.setRequestHeader("Content-Type", "application/json");
-    request.onload = () => {
-      if(request.status === 200) {
-        var data = JSON.parse(request.responseText);
-        this.setState({ data: data });
+
+    return new Promise((resolve, reject) => {
+      request.open("GET", url);
+      request.setRequestHeader("Content-Type", "application/json");
+      request.onload = () => {
+        if(request.status !== 200) {
+          reject("Error retrieving data")
+        } else {
+          var parsedData = JSON.parse(request.responseText);
+          // this.setState({ data: data });
+          resolve(parsedData);
+        }
       }
-    }
-    request.send(null);
-    console.log(this.state.data);
+      request.send(null);
+    });
+  }
+
+  autofillFields(parsedData) {
+    var longitude = parsedData.results[0].geometry.location.lng;
+    var latitude = parsedData.results[0].geometry.location.lat;
+
+    var addressObject = parsedData.results[0].address_components;
+    var addressValue = addressObject[1].long_name;
+    var cityValue = addressObject[2].long_name;
+    var countryValue = addressObject[4].long_name;
+
+    document.getElementById("address").value = addressValue;
+    document.getElementById("city").value = cityValue;
+    document.getElementById("country").value = countryValue;
+    document.getElementById("longitude").value = longitude;
+    document.getElementById("latitude").value = latitude;
   }
 
   handleSubmit(e) {
@@ -80,7 +102,7 @@ export default class CheckoutForm extends Component {
             <input id="phone" className={inputClass} type="text" name="phone" placeholder="Phone" />
           </div>
           <div className="form-section">
-            <select className={inputClass} name="country">
+            <select id="country" className={inputClass} name="country">
               <option value="" disabled selected>Country</option>
               <option>Scotland</option>
               <option>England</option>
@@ -88,7 +110,7 @@ export default class CheckoutForm extends Component {
               <option>Ireland</option>
             </select>
             <input id="city" className={inputClass} type="text" name="city" placeholder="City" />
-            <input id="postcode" className={inputClass} type="text" name="postcode" placeholder="Postcode" onChange={this.getPostcode} />
+            <input id="postcode" className={inputClass} type="text" name="postcode" placeholder="Postcode" onBlur={this.getPostcode} />
             <input id="longitude" className="form-input" type="text" name="longitude" placeholder="Longitude" />
             <input id="latitude" className="form-input" type="text" name="latitude" placeholder="Latitude" />
             <input id="address" className={inputClass} type="text" name="address" placeholder="Address" />
