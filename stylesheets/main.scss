@@ -2,7 +2,7 @@
   width: 600px;
   height: 600px;
   border: solid 1px black;
-  background-color: #e1e3e8;
+  background-color: #f7f7f7;
 }
 
 .form-main {
@@ -16,10 +16,11 @@
 .form-input {
   display: inline-block;
   margin: 20px;
+  padding: 4px;
 }
 
 .alert {
-  border: solid 1px red;
+  border: solid 3px red;
 }
 
 #submit {
@@ -27,5 +28,5 @@
 }
 
 h3 {
-  border: solid 1px red;
+  border: solid 3px red;
 }

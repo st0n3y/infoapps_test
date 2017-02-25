@@ -88,7 +88,7 @@ export default class CheckoutForm extends Component {
 
   render() {
     var inputClass = "form-input required";
-    if(this.state.okToSubmit === false)  inputClass += " alert"
+    if(this.state.okToSubmit === false)  inputClass += " alert";
     return (
       <div>
         <form className="form-main" onSubmit={this.handleSubmit}>
@@ -114,7 +114,7 @@ export default class CheckoutForm extends Component {
             <input id="longitude" className="form-input" type="text" name="longitude" placeholder="Longitude" />
             <input id="latitude" className="form-input" type="text" name="latitude" placeholder="Latitude" />
             <input id="address" className={inputClass} type="text" name="address" placeholder="Address" />
-            <textarea className="form-input" rows="4" cols="50" name="additional info" placeholder="Additional info (250 characters max.)" maxLength="250"></textarea>
+            <textarea className="form-input" rows="4" cols="50" name="additional info" placeholder="Additional info (200 characters max.)" maxLength="200"></textarea>
           </div>
           <button type="submit" id="submit">Submit</button>
           {
