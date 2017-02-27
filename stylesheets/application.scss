@@ -1,0 +1,130 @@
+@import "functions";
+
+// ==========================================================================
+// Global Config
+// ==========================================================================
+
+// Font Stacks
+
+$font-url--google     : "https://fonts.googleapis.com/css?family=Quicksand:100,300,400,700,900";
+$font-family--primary : 'Quicksand', sans-serif;
+
+@if variable-exists(font-url--google) {
+  @import url($font-url--google);
+}
+
+// Font Weights
+
+$font-weight--thin        : 100;
+$font-weight--light       : 300;
+$font-weight--medium      : 400;
+$font-weight--bold        : 700;
+$font-weight--ultra-bold  : 900;
+
+// Descriptive Base Colours
+
+$white  : #fff;
+$black  : #0a0a0a;
+$grey   : #dee0e2;
+$red    : #db3725;
+
+// Color Palette Modifiers
+
+$color-palettes: (
+  grey: (
+    xx-light : lighten($grey, 43%),
+    x-light  : lighten($grey, 35%),
+    light    : lighten($grey, 10%),
+    base     : $grey,
+    dark     : darken($grey, 8%),
+    x-dark   : darken($grey, 16%)
+  ),
+  black: (
+    x-light  : lighten($black, 50%),
+    light    : lighten($black, 10%),
+    base     : $black,
+    dark     : darken($black, 10%)
+  ),
+  red: (
+    light    : lighten($red, 10%),
+    base     : $red,
+    dark     : darken($red, 10%)
+  )
+);
+
+// Text
+
+$base__font-size  : 16px;
+$base__line       : 24px;
+
+// ==========================================================================
+// Base Styles
+// ==========================================================================
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  color: palette(black);
+  font-size: $base__font-size;
+  font-family: $font-family--primary;
+  line-height: ($base__line/$base__font-size);
+}
+
+h1 {
+  font-weight: $font-weight--thin;
+}
+
+h3 {
+  font-weight: $font-weight--ultra-bold;
+  text-align: center;
+}
+
+// ==========================================================================
+// Container
+// ==========================================================================
+.outer-container {
+  width             : em(500px);
+  height            : em(620px);
+  box-shadow        : 3px 3px 5px 6px palette(black, x-light);
+  background-color  : palette(grey, light);
+}
+
+// ==========================================================================
+// Dynamic Alert Style
+// ==========================================================================
+.alert {
+  border: solid 3px palette(red);
+}
+
+// ==========================================================================
+// Form
+// ==========================================================================
+.form-main {
+  padding: em(20px);
+}
+
+.form-section {
+  border-bottom: solid 1px $grey;
+}
+
+.form-input {
+  display: inline-block;
+  margin: em(15px);
+  padding: em(4px);
+}
+
+button {
+  margin-top: 10px;
+  height: em(40px);
+  width: em(100px);
+}
+
+// ==========================================================================
+// Form
+// ==========================================================================
+#success-message {
+  text-align: center;
+  padding-top: (em(250px));
+}

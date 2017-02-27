@@ -47,10 +47,10 @@ export default class CheckoutForm extends Component {
             <h1 id="header">Checkout Form</h1>
           </div>
           <div className="form-section">
-            <input id="firstName" className={inputClass} type="text" name="firstName" placeholder="First Name" />
-            <input id="lastName" className={inputClass} type="text" name="lastName" placeholder="Last Name" />
-            <input id="email" className={inputClass} type="text" name="email" placeholder="E-mail" />
-            <input id="phone" className={inputClass} type="text" name="phone" placeholder="Phone" />
+            <input id="firstName" className={inputClass} type="text" name="firstName" placeholder="First Name" />*
+            <input id="lastName" className={inputClass} type="text" name="lastName" placeholder="Last Name" />*
+            <input id="email" className={inputClass} type="text" name="email" placeholder="E-mail" />*
+            <input id="phone" className={inputClass} type="text" name="phone" placeholder="Phone" />*
           </div>
           <div className="form-section">
             <select id="country" className={inputClass} name="country">
@@ -59,20 +59,21 @@ export default class CheckoutForm extends Component {
               <option>England</option>
               <option>Wales</option>
               <option>Ireland</option>
-            </select>
-            <input id="city" className={inputClass} type="text" name="city" placeholder="City" />
-            <input id="postcode" className={inputClass} type="text" name="postcode" placeholder="Postcode" onBlur={this.getPostcode} />
+            </select>*
+            <input id="city" className={inputClass} type="text" name="city" placeholder="City" />*
+            <input id="postcode" className={inputClass} type="text" name="postcode" placeholder="Postcode" onBlur={this.getPostcode} />*
+            <input id="address" className={inputClass} type="text" name="address" placeholder="Address" size="65" />*
             <input id="longitude" className="form-input" type="text" name="longitude" placeholder="Longitude" />
             <input id="latitude" className="form-input" type="text" name="latitude" placeholder="Latitude" />
-            <input id="address" className={inputClass} type="text" name="address" placeholder="Address" />
             <textarea className="form-input" rows="4" cols="50" name="additional info" placeholder="Additional info (200 characters max.)" maxLength="200"></textarea>
+            <p>(* indicates required field)</p>
           </div>
           <button type="submit" id="submit">Submit</button>
           {
             this.state.okToSubmit ?
               <p></p>
               :
-              <h3>Please fill in all of the highlighted fields before submitting.</h3>
+              <h3 className="alert">Please ensure all highlighted fields are filled in before submitting.</h3>
           }
         </form>
       </div>
