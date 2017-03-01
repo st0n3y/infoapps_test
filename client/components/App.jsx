@@ -41,7 +41,6 @@ export default class App extends Component {
 
     return new Promise((resolve, reject) => {
       request.open("GET", url);
-      request.setRequestHeader("Content-Type", "application/json");
       request.onload = () => {
         if(request.status !== 200) {
           reject("Error retrieving data")
