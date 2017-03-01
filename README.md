@@ -18,7 +18,3 @@ Once all dependencies have been installed, start the server by running:
 To view the app, point your browser of choice at:
 
   http://localhost:8080
-
-You may experience a Cross-Origin Resource Sharing error when the form tries to autofill fields using the postcode. If you do, I suggest installing the Allow-Control-Allow-Origin extension for Chrome and activating it:
-
-https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en-US
