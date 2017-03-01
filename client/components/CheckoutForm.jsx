@@ -62,7 +62,7 @@ export default class CheckoutForm extends Component {
             </select>*
             <input id="city" className={inputClass} type="text" name="city" placeholder="City" />*
             <input id="postcode" className={inputClass} type="text" name="postcode" placeholder="Postcode" onBlur={this.getPostcode} />*
-            <input id="address" className={inputClass} type="text" name="address" placeholder="Address" size="65" />*
+            <input id="address" className={inputClass} type="text" name="address" placeholder="Address" />*
             <input id="longitude" className="form-input" type="text" name="longitude" placeholder="Longitude" />
             <input id="latitude" className="form-input" type="text" name="latitude" placeholder="Latitude" />
             <textarea className="form-input" rows="4" cols="50" name="additional info" placeholder="Additional info (200 characters max.)" maxLength="200"></textarea>
