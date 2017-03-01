@@ -22,9 +22,20 @@ export default class App extends Component {
   }
 
   handlePostcode(postcode) {
-    var postcodeArray = postcode.split(" ");
-    var postcode1 = postcodeArray[0];
-    var postcode2 = postcodeArray[1];
+    var postcode1 = "";
+    var postcode2 = "";
+
+    if(postcode.includes(" ")) {
+      let postcodeArray = postcode.split(" ");
+      postcode1 = postcodeArray[0];
+      postcode2 = postcodeArray[1];
+    } else if(postcode.length === 7) {
+      postcode1 = postcode.substr(0, 4);
+      postcode2 = postcode.substr(4);
+    } else if(postcode.length === 6) {
+      postcode1 = postcode.substr(0, 3);
+      postcode2 = postcode.substr(3);
+    }
       
     this.requestAddressFromAPI(postcode1, postcode2)
       .then((parsedData) => {
